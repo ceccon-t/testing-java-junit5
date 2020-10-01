@@ -39,8 +39,9 @@ class VetControllerTest {
 
         allVets.forEach(vetService::save);
 
-        assertAll("List vets assertions",
-                () -> assertEquals("vets/index", vetController.listVets(model), "List vets did not return correct route"),
+        assertEquals("vets/index", vetController.listVets(model), "List vets did not return correct route");
+
+        assertAll("Assertions on Model",
                 () -> assertTrue(model.contains("vets"), "List vets did not set vets property"),
                 () -> assertEquals(allVets.size(), ((Set) model.getAttribute("vets")).size(), "List vets did not list all existing vets"),
                 () -> assertTrue(isEquivalentVetCollection(allVets, ((Set) model.getAttribute("vets"))), "List vets did not list correct vets"));
