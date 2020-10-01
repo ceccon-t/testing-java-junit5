@@ -18,12 +18,14 @@ class VetControllerTest {
     VetController vetController;
 
     HashMapModel model;
+    SpecialityMapService specialityMapService;
     VetService vetService;
 
     @BeforeEach
     void setUp() {
         model = new HashMapModel();
-        vetService = new VetMapService(new SpecialityMapService());
+        specialityMapService = new SpecialityMapService();
+        vetService = new VetMapService(specialityMapService);
         vetController = new VetController(vetService);
     }
 
